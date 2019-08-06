@@ -4,11 +4,11 @@
     <Scroller v-else>
       <ul>
         <li v-for="item in comingList" :key="item.id">
-          <div class="pic_show">
+          <div class="pic_show" @tap="handleToDetail(item.id)">
             <img :src="item.img | setWH('128.180')" />
           </div>
           <div class="info_list">
-            <h2>
+            <h2 @tap="handleToDetail(item.id)">
               {{item.nm}}
               <img v-if="item.version" src="@/assets/maxs.png" />
             </h2>
@@ -39,7 +39,7 @@ export default {
     var cityId = this.$store.state.city.id;
     if(this.prevCityId === cityId) {return;}
     this.isLoading = true;
-    this.axios.get("/api/movieComingList?cityId="+cityId).then(res => {
+    this.axios.get("/api/movieComingList?cityId=" + cityId).then(res => {
       var msg = res.data.msg;
       if (msg === "ok") {
         this.comingList = res.data.data.comingList;
@@ -47,6 +47,11 @@ export default {
         this.prevCityId = cityId;
       }
     });
+  },
+  methods: {
+    handleToDetail(movieId) {
+      this.$router.push("/movie/detail/2/" + movieId);
+    }
   }
 };
 </script>

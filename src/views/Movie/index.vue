@@ -22,6 +22,7 @@
     </div>
 
     <TabBar />
+    <router-view name="detail" />
   </div>
 </template>
 
@@ -30,7 +31,6 @@
 import Header from "@/components/Header";
 import TabBar from "@/components/TabBar";
 import { messageBox } from "@/components/JS";
-import { setTimeout } from "timers";
 
 export default {
   name: "Movie",
@@ -47,7 +47,9 @@ export default {
         if (msg === "ok") {
           var nm = res.data.data.nm;
           var id = res.data.data.id;
-          if(this.$store.state.city.id == id) {return}
+          if (this.$store.state.city.id == id) {
+            return;
+          }
 
           messageBox({
             title: "定位",
