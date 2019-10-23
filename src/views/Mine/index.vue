@@ -1,15 +1,14 @@
 <template>
   <div id="main">
-    <Header title="我的喵喵"/>
+    <Header title="我的喵喵" />
     <div id="content">
-			<Login/>
-		</div>
-    <TabBar/>
+      <router-view />
+    </div>
+    <TabBar />
   </div>
 </template>
 
-
-<script>
+<<script>
 import Header from '@/components/Header'
 import TabBar from '@/components/TabBar'
 import Login from '@/components/Login'
@@ -24,7 +23,5 @@ export default {
 }
 </script>
 
-
 <style scoped>
-
 </style>
